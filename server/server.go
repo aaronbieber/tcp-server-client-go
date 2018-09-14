@@ -50,11 +50,11 @@ func handleConnection(conn net.Conn) {
 	for {
 		ok := scanner.Scan()
 
-		handleMessage(scanner.Text(), conn)
-
 		if !ok {
 			break
 		}
+		
+		handleMessage(scanner.Text(), conn)
 	}
 
 	fmt.Println("Client at " + remoteAddr + " disconnected.")
