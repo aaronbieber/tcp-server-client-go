@@ -63,7 +63,7 @@ func handleConnection(conn net.Conn) {
 func handleMessage(message string, conn net.Conn) {
 	fmt.Println("> " + message)
 
-	if message[0] == '/' {
+	if len(message) > 0 && message[0] == '/' {
 		switch {
 		case message == "/time":
 			resp := "It is " + time.Now().String() + "\n"
@@ -78,7 +78,7 @@ func handleMessage(message string, conn net.Conn) {
 			os.Exit(0)
 
 		default:
-			conn.Write([]byte("Unrecognized command."))
+			conn.Write([]byte("Unrecognized command.\n"))
 		}
 	}
 }
