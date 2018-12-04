@@ -23,6 +23,8 @@ var addr = flag.String("addr", "", "The address to listen to; default is \"\" (a
 var port = flag.Int("port", 8000, "The port to listen on; default is 8000.")
 
 func main() {
+	flag.Parse()
+
 	fmt.Println("Starting server...")
 
 	src := *addr + ":" + strconv.Itoa(*port)
@@ -53,7 +55,7 @@ func handleConnection(conn net.Conn) {
 		if !ok {
 			break
 		}
-		
+
 		handleMessage(scanner.Text(), conn)
 	}
 
